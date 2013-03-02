@@ -107,9 +107,8 @@ class Boot {
       Menu("Interactive Stuff") / "interactive" submenus(
         Menu("Ajax Samples") / "ajax",
         Menu("Ajax Form") / "ajax-form",
-        Menu("Modal Dialog") / "rhodeisland"
-
-
+        Menu("Modal Dialog") / "rhodeisland",
+        Menu("Ajax and Forms") / "form_ajax")
         )
     )
 
