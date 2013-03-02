@@ -19,8 +19,6 @@ package net.liftweb.example.snippet
 import _root_.net.liftweb.http._
 import net.liftweb.common._
 
-//import _root_.net.liftweb.widgets.autocomplete._
-
 import net.liftweb.util.Helpers._
 
 import js._
@@ -29,6 +27,7 @@ import JqJsCmds._
 import JsCmds._
 import SHtml._
 import _root_.scala.xml.{Text, NodeSeq}
+//import _root_.net.liftweb.widgets.autocomplete._
 
 import scala.language.postfixOps
 
@@ -54,7 +53,7 @@ class Ajax extends Loggable {
 
     // use css selectors to bind the view to the functionality
     "#clicker" #> doClicker _ &
-      "select" #> doSelect _ &
+      "#select" #> doSelect _ &
       "#ajaxText" #> doText _ // &
     //    "auto" #> AutoComplete("", buildQuery _, _ => ()))
   }
@@ -68,9 +67,6 @@ class Ajax extends Loggable {
     import js.JE._
 
     "* [onclick]" #> SHtml.ajaxCall(ValById("the_input"),
-      s => SetHtml("messages",
-        <i>Text box is
-          {s}
-        </i>))
+      s => SetHtml("messages", <i>Text box is {s}</i>))
   }
 }
