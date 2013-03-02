@@ -48,9 +48,8 @@ class Boot {
     // Dump information about session every 10 seconds
     SessionMaster.sessionWatchers = SessionInfoDumper :: SessionMaster.sessionWatchers
 
-//    // used by the Ajax example
-//    AutoComplete.init()
-
+    //    // used by the Ajax example
+    //    AutoComplete.init()
 
 
     //        if (!DB.jndiJdbcConnAvailable_?) {
@@ -105,9 +104,9 @@ class Boot {
   object MenuInfo {
     def sitemap = SiteMap(
       Menu("Home") / "index",
-      Menu("Interactive Stuff") / "interactive" submenus (
-        Menu("Ajax Samples") / "ajax"
-
+      Menu("Interactive Stuff") / "interactive" submenus(
+        Menu("Ajax Samples") / "ajax",
+        Menu("Ajax Form") / "ajax-form"
 
         )
     )
