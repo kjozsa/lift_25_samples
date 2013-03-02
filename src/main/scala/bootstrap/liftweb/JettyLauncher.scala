@@ -11,10 +11,6 @@ object JettyLauncher extends App {
   val server = new Server(port)
 
   val context = new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS)
-
-  context.addServlet(classOf[DefaultServlet], "/")
-  context.addServlet(classOf[WebServlet], "/console/*")
-
   context.addFilter(classOf[LiftFilter], "/*", EnumSet.of(DispatcherType.REQUEST))
   context.setResourceBase("src/main/webapp")
 
