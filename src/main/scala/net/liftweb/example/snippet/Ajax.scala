@@ -45,20 +45,12 @@ class Ajax extends Loggable {
     }, in)
 
     // create an ajax select box
-    def doSelect(msg: NodeSeq) = ajaxSelect((1 to 50).toList.map(i => (i.toString, i.toString)),
+    def doSelect(in: NodeSeq) = ajaxSelect((1 to 50).toList.map(i => (i.toString, i.toString)),
       Full(1.toString),
-      v => DisplayMessage("messages",
-        bind("sel", msg, "number" -> Text(v)),
-        5 seconds, 1 second))
+      v => DisplayMessage("messages", ("#number" #> Text(v)).apply(in), 5 seconds, 1 second))
 
     // build up an ajax text box
-    def doText(msg: NodeSeq) = ajaxText("", v => DisplayMessage("messages", {
-      val css = "#value" #> Text(v)
-      css(msg)
-    }, 4 seconds, 1 second))
-
-
-
+    def doText(in: NodeSeq) = ajaxText("", v => DisplayMessage("messages", ("#value" #> Text(v)).apply(in), 4 seconds, 1 second))
 
     // use css selectors to bind the view to the functionality
     "#clicker" #> doClicker _ &
@@ -67,10 +59,10 @@ class Ajax extends Loggable {
     //    "auto" #> AutoComplete("", buildQuery _, _ => ()))
   }
 
-  private def buildQuery(current: String, limit: Int): Seq[String] = {
-    logger.info("Checking on server side with " + current + " limit " + limit)
-    (1 to limit).map(n => current + "" + n)
-  }
+//  private def buildQuery(current: String, limit: Int): Seq[String] = {
+//    logger.info("Checking on server side with " + current + " limit " + limit)
+//    (1 to limit).map(n => current + "" + n)
+//  }
 
   def buttonClick = {
     import js.JE._
