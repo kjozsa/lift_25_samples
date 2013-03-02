@@ -109,7 +109,7 @@ class Boot {
         Menu("Ajax Form") / "ajax-form",
         Menu("Modal Dialog") / "rhodeisland",
         Menu("Ajax and Forms") / "form_ajax")
-        )
+        
     )
 
   }
