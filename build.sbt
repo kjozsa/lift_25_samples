@@ -1,3 +1,5 @@
+import com.typesafe.sbt.SbtStartScript 
+
 name := "Lift 2.5 samples"
 
 version := "0.0.1"
@@ -11,6 +13,9 @@ resolvers ++= Seq("snapshots"     at "http://oss.sonatype.org/content/repositori
                 )
 
 seq(com.github.siasia.WebPlugin.webSettings :_*)
+
+seq(SbtStartScript.startScriptForClassesSettings: _*)
+
 
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
