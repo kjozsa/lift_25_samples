@@ -15,12 +15,15 @@ import example._
 
 import snippet._
 
+import scala.language.postfixOps
+
 
 /**
  * A class that's instantiated early and run.  It allows the application
  * to modify lift's environment
  */
 class Boot {
+
   def boot {
     // where to search snippet
     LiftRules.addToPackages("net.liftweb.example")
@@ -44,6 +47,10 @@ class Boot {
 
     // Dump information about session every 10 seconds
     SessionMaster.sessionWatchers = SessionInfoDumper :: SessionMaster.sessionWatchers
+
+//    // used by the Ajax example
+//    AutoComplete.init()
+
 
 
     //        if (!DB.jndiJdbcConnAvailable_?) {
@@ -97,8 +104,14 @@ class Boot {
 
   object MenuInfo {
     def sitemap = SiteMap(
-      Menu("Home") / "index"
+      Menu("Home") / "index",
+      Menu("Interactive Stuff") / "interactive" submenus (
+        Menu("Ajax Samples") / "ajax"
+
+
+        )
     )
+
   }
 
   object SessionInfoDumper extends LiftActor with Loggable {
@@ -141,12 +154,13 @@ class Boot {
           def pretty(in: Long): String = if (in > 1000L) pretty(in / 1000L) + "," + (in % 1000L) else in.toString
 
           val dateStr: String = now.toString
-          logger.info("[MEMDEBUG] At " + dateStr + " Number of open sessions: " + sessions.size)
-          logger.info("[MEMDEBUG] Free Memory: " + pretty(RuntimeStats.freeMem))
-          logger.info("[MEMDEBUG] Total Memory: " + pretty(RuntimeStats.totalMem))
-          logger.info("[MEMDEBUG] Kill Interval: " + (SessionChecker.killWhen / 1000L))
-          logger.info("[MEMDEBUG] Kill Count: " + (SessionChecker.killCnt))
+          logger.debug("[MEMDEBUG] At " + dateStr + " Number of open sessions: " + sessions.size)
+          logger.debug("[MEMDEBUG] Free Memory: " + pretty(RuntimeStats.freeMem))
+          logger.debug("[MEMDEBUG] Total Memory: " + pretty(RuntimeStats.totalMem))
+          logger.debug("[MEMDEBUG] Kill Interval: " + (SessionChecker.killWhen / 1000L))
+          logger.debug("[MEMDEBUG] Kill Count: " + (SessionChecker.killCnt))
         }
     }
   }
+
 }
