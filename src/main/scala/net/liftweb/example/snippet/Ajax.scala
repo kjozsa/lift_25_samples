@@ -27,6 +27,8 @@ import JqJsCmds._
 import JsCmds._
 import SHtml._
 import _root_.scala.xml.{Text, NodeSeq}
+import net.liftmodules.widgets.autocomplete._
+
 //import _root_.net.liftweb.widgets.autocomplete._
 
 import scala.language.postfixOps
@@ -54,19 +56,21 @@ class Ajax extends Loggable {
     // use css selectors to bind the view to the functionality
     "#clicker" #> doClicker _ &
       "#select" #> doSelect _ &
-      "#ajaxText" #> doText _ // &
-    //    "auto" #> AutoComplete("", buildQuery _, _ => ()))
+      "#ajaxText" #> doText _ &
+      "#auto" #> AutoComplete("", buildQuery _, _ => ())
   }
 
-//  private def buildQuery(current: String, limit: Int): Seq[String] = {
-//    logger.info("Checking on server side with " + current + " limit " + limit)
-//    (1 to limit).map(n => current + "" + n)
-//  }
+    private def buildQuery(current: String, limit: Int): Seq[String] = {
+      logger.info("Checking on server side with " + current + " limit " + limit)
+      (1 to limit).map(n => current + "" + n)
+    }
 
   def buttonClick = {
     import js.JE._
 
     "* [onclick]" #> SHtml.ajaxCall(ValById("the_input"),
-      s => SetHtml("messages", <i>Text box is {s}</i>))
+      s => SetHtml("messages", <i>Text box is
+        {s}
+      </i>))
   }
 }
