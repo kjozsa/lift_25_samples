@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package net.liftweb {
-package example {
-package snippet {
+package net.liftweb.example.snippet
 
 import _root_.net.liftweb._
 import http._
@@ -49,10 +47,4 @@ class JSDialog {
       "#no" #> ((b: NodeSeq) => <button onclick={Unblock.toJsCmd}>
         {b}
       </button>)
-}
-
-}
-
-}
-
-}
+x`x}
