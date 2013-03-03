@@ -5,7 +5,8 @@ import net.liftweb.http._
 import js.jquery.JQueryArtifacts
 import net.liftweb._
 import common.{Full, Loggable}
-import util.Helpers
+import sitemap.Loc.Unless
+import util.{Props, Helpers}
 import http._
 import actor._
 import sitemap._
@@ -106,6 +107,7 @@ class Boot {
     def sitemap = SiteMap(
       Menu("Home") / "index",
       Menu("Interactive Stuff") / "interactive" submenus(
+        Menu("Comet Chat") / "chat",
         Menu("Ajax Samples") / "ajax",
         Menu("Ajax Form") / "ajax-form",
         Menu("Modal Dialog") / "rhodeisland",
