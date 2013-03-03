@@ -122,6 +122,14 @@ class Boot {
         Menu("Lazy Loading") / "lazy",
         Menu("Parallel Snippets") / "parallel",
         Menu("<head/> tag") / "templating" / "head"
+        ),
+      Menu("Menus") / "menu" / "index" submenus(
+        Menu("First Submenu") / "menu" / "one",
+        Menu("Second Submenu (has more)") / "menu" / "two" submenus(
+          Menu("First (2) Submenu") / "menu" / "two_one",
+          Menu("Second (2) Submenu") / "menu" / "two_two"),
+        Menu("Third Submenu") / "menu" / "three",
+        Menu("Forth Submenu") / "menu" / "four"
         )
     )
   }
