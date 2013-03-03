@@ -111,8 +111,18 @@ class Boot {
         Menu("Ajax Samples") / "ajax",
         Menu("Ajax Form") / "ajax-form",
         Menu("Modal Dialog") / "rhodeisland",
-        Menu("Ajax and Forms") / "form_ajax")
-
+        Menu("Ajax and Forms") / "form_ajax"
+        ),
+      Menu("Templating") / "templating" / "index" submenus(
+        Menu("Surround") / "templating" / "surround",
+        Menu("Embed") / "templating" / "embed",
+        Menu("Evalutation Order") / "templating" / "eval_order",
+        Menu("Select <div>s") / "templating" / "selectomatic",
+        Menu("Simple Wizard") / "simple_wizard",
+        Menu("Lazy Loading") / "lazy",
+        Menu("Parallel Snippets") / "parallel",
+        Menu("<head/> tag") / "templating" / "head"
+        )
     )
   }
 
