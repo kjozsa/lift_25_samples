@@ -47,4 +47,4 @@ class JSDialog {
       "#no" #> ((b: NodeSeq) => <button onclick={Unblock.toJsCmd}>
         {b}
       </button>)
-x`x}
+}
