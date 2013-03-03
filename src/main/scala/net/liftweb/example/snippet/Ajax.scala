@@ -56,8 +56,8 @@ class Ajax extends Loggable {
     // use css selectors to bind the view to the functionality
     "#clicker" #> doClicker _ &
       "#select" #> doSelect _ &
-      "#ajaxText" #> doText _ &
-      "#auto" #> AutoComplete("", buildQuery _, _ => ())
+      "#ajaxText" #> doText _ // &
+//      "#auto" #> AutoComplete("", buildQuery _, _ => ())  // FIXME this aint work plus even makes Timely misbehave
   }
 
     private def buildQuery(current: String, limit: Int): Seq[String] = {
