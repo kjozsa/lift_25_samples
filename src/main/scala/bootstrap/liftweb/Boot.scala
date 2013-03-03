@@ -80,6 +80,7 @@ class Boot {
         Menu("Ajax Samples") / "ajax",
         Menu("Ajax Form") / "ajax-form",
         Menu("Modal Dialog") / "rhodeisland",
+        Menu("JSON Messaging") / "json",
         Menu("Ajax and Forms") / "form_ajax"
         ),
       Menu("Persistence") / "persistence" submenus(
