@@ -14,6 +14,7 @@ import Helpers._
 
 import example._
 
+import comet.ExampleClock
 import snippet._
 
 import scala.language.postfixOps
@@ -54,6 +55,11 @@ class Boot {
     AutoComplete.init()
 
     LiftRules.localeCalculator = r => definedLocale.openOr(LiftRules.defaultLocaleCalculator(r))
+
+    LiftRules.cometCreation.append {
+      case CometCreationInfo("Clock", name, defaultXml, attributes, session) =>
+        new ExampleClock(session, Full("Clock"), name, defaultXml, attributes)
+    }
 
 
     //        if (!DB.jndiJdbcConnAvailable_?) {
@@ -125,6 +131,7 @@ class Boot {
         Menu("Parallel Snippets") / "parallel",
         Menu("<head/> tag") / "templating" / "head"
         ),
+      Menu("Web Services") / "ws",
       Menu("Localization") / "lang",
       Menu("Menus") / "menu" / "index" submenus(
         Menu("First Submenu") / "menu" / "one",
@@ -134,7 +141,9 @@ class Boot {
         Menu("Third Submenu") / "menu" / "three",
         Menu("Forth Submenu") / "menu" / "four"
         ),
-      Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group> <i>Lift</i> project home</xml:group>)),
+      Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
+        <i>Lift</i>
+        project home</xml:group>)),
       Menu(Loc("src", ExtLink("https://github.com/kjozsa/lift_25_samples"), "Source code for this site"))
 
     )
