@@ -4,9 +4,15 @@ package bootstrap.liftweb
 import net.liftweb.http._
 import js.jquery.JQueryArtifacts
 import net.liftweb._
-import common.{Full, Loggable}
+import common._
+import common.Full
+import db._
+import http.CometCreationInfo
+import http.Html5Properties
+import http.SessionWatcherInfo
+import mapper.Schemifier
 import sitemap.Loc.{Link, ExtLink}
-import util.Helpers
+import util.{Props, Helpers}
 import http._
 import actor._
 import sitemap._
@@ -15,10 +21,12 @@ import Helpers._
 import example._
 
 import comet.ExampleClock
+import model.Person
 import snippet._
 
 import scala.language.postfixOps
 import net.liftmodules.widgets.autocomplete.AutoComplete
+import java.sql.{DriverManager, Connection}
 
 
 /**
@@ -56,11 +64,16 @@ class Boot {
 
     LiftRules.localeCalculator = r => definedLocale.openOr(LiftRules.defaultLocaleCalculator(r))
 
+    // comet clock widget
     LiftRules.cometCreation.append {
       case CometCreationInfo("Clock", name, defaultXml, attributes, session) =>
         new ExampleClock(session, Full("Clock"), name, defaultXml, attributes)
     }
-}
+
+    DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
+    Schemifier.schemify(true, Schemifier.infoF _, Person)
+
+  }
 
   object MenuInfo {
     def sitemap = SiteMap(
@@ -154,4 +167,74 @@ class Boot {
     }
   }
 
+  /**
+   * Database connection calculation
+   */
+  object DBVendor extends ConnectionManager {
+    private var pool: List[Connection] = Nil
+    private var poolSize = 0
+    private val maxPoolSize = 4
+
+    private lazy val chooseDriver = Props.mode match {
+      case Props.RunModes.Production => "org.apache.derby.jdbc.EmbeddedDriver"
+      case _ => "org.h2.Driver"
+    }
+
+
+    private lazy val chooseURL = Props.mode match {
+      case Props.RunModes.Production => "jdbc:derby:lift_example;create=true"
+      case _ => "jdbc:h2:mem:lift;DB_CLOSE_DELAY=-1"
+    }
+
+
+    private def createOne: Box[Connection] = {
+      try {
+        val driverName: String = Props.get("db.driver") openOr chooseDriver
+        val dbUrl: String = Props.get("db.url") openOr chooseURL
+
+        Class.forName(driverName)
+
+        val dm = (Props.get("db.user"), Props.get("db.password")) match {
+          case (Full(user), Full(pwd)) =>
+            DriverManager.getConnection(dbUrl, user, pwd)
+
+          case _ => DriverManager.getConnection(dbUrl)
+        }
+        Full(dm)
+      } catch {
+        case e: Exception => e.printStackTrace; Empty
+      }
+    }
+
+    def newConnection(name: ConnectionIdentifier): Box[Connection] =
+      synchronized {
+        pool match {
+          case Nil if poolSize < maxPoolSize =>
+            val ret = createOne
+            poolSize = poolSize + 1
+            ret.foreach(c => pool = c :: pool)
+            ret
+
+          case Nil => wait(1000L); newConnection(name)
+          case x :: xs => try {
+            x.setAutoCommit(false)
+            Full(x)
+          } catch {
+            case e: Throwable => try {
+              pool = xs
+              poolSize = poolSize - 1
+              x.close
+              newConnection(name)
+            } catch {
+              case e: Throwable => newConnection(name)
+            }
+          }
+        }
+      }
+
+    def releaseConnection(conn: Connection): Unit = synchronized {
+      pool = conn :: pool
+      notify
+    }
+  }
 }
