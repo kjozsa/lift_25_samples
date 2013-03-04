@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2010 WorldWide Conferencing, LLC
+ * Copyright 2007-2013 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package net.liftweb {
-package example {
-package snippet {
+package net.liftweb.example.snippet
 
 import _root_.net.liftweb.http._
 import js._
@@ -43,19 +41,8 @@ class Json {
       })
   }
 
-  def sample = ".json [onclick]" #> Text(json.call(ElemById("json_select") ~> Value, ElemById("json_question") ~> Value).toJsCmd)
-
-//  def sample(in: NodeSeq): NodeSeq =
-//    bind("json", in,
-//      "script" -> Script(json.jsCmd),
-//      AttrBindParam("onclick",
-//        Text(json.call(ElemById("json_select") ~> Value,
-//          ElemById("json_question") ~> Value).toJsCmd),
-//        "onclick"))
-}
-
-}
-
-}
+  def sample =
+    "#jsonscript" #> Script(json.jsCmd) &
+    ".json [onclick]" #> Text(json.call(ElemById("json_select") ~> Value, ElemById("json_question") ~> Value).toJsCmd)
 
 }
