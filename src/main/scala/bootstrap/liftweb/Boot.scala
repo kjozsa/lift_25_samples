@@ -53,6 +53,8 @@ class Boot {
     // used by the Ajax example
     AutoComplete.init()
 
+    LiftRules.localeCalculator = r => definedLocale.openOr(LiftRules.defaultLocaleCalculator(r))
+
 
     //        if (!DB.jndiJdbcConnAvailable_?) {
     //      val vendor =
@@ -123,6 +125,7 @@ class Boot {
         Menu("Parallel Snippets") / "parallel",
         Menu("<head/> tag") / "templating" / "head"
         ),
+      Menu("Localization") / "lang",
       Menu("Menus") / "menu" / "index" submenus(
         Menu("First Submenu") / "menu" / "one",
         Menu("Second Submenu (has more)") / "menu" / "two" submenus(
