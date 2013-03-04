@@ -18,6 +18,7 @@ import Helpers._
 import example._
 
 import comet.ExampleClock
+import lib.StatelessJson
 import model._
 import snippet._
 
@@ -56,6 +57,8 @@ class Boot {
     // Dump information about session every 10 seconds
     SessionMaster.sessionWatchers = SessionInfoDumper :: SessionMaster.sessionWatchers
 
+    StatelessJson.init()
+
     // used by the Ajax example
     AutoComplete.init()
 
@@ -81,6 +84,7 @@ class Boot {
         Menu("Ajax Form") / "ajax-form",
         Menu("Modal Dialog") / "rhodeisland",
         Menu("JSON Messaging") / "json",
+        Menu("Stateless JSON Messaging") / "stateless_json",
         Menu("Ajax and Forms") / "form_ajax"
         ),
       Menu("Persistence") / "persistence" submenus(
