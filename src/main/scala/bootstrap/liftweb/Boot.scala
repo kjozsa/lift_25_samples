@@ -5,8 +5,8 @@ import net.liftweb.http._
 import js.jquery.JQueryArtifacts
 import net.liftweb._
 import common.{Full, Loggable}
-import sitemap.Loc.{ExtLink, Unless}
-import util.{Props, Helpers}
+import sitemap.Loc.{Link, ExtLink}
+import util.Helpers
 import http._
 import actor._
 import sitemap._
@@ -60,56 +60,7 @@ class Boot {
       case CometCreationInfo("Clock", name, defaultXml, attributes, session) =>
         new ExampleClock(session, Full("Clock"), name, defaultXml, attributes)
     }
-
-
-    //        if (!DB.jndiJdbcConnAvailable_?) {
-    //      val vendor =
-    //        new StandardDBVendor(Props.get("db.driver") openOr "org.h2.Driver",
-    //          Props.get("db.url") openOr
-    //            "jdbc:h2:lift_proto.db;AUTO_SERVER=TRUE",
-    //          Props.get("db.user"), Props.get("db.password"))
-    //
-    //      LiftRules.unloadHooks.append(vendor.closeAllConnections_! _)
-    //
-    //      DB.defineConnectionManager(DefaultConnectionIdentifier, vendor)
-    //    }
-    //
-    //    // Use Lift's Mapper ORM to populate the database
-    //    // you don't need to use Mapper to use Lift... use
-    //    // any ORM you want
-    //    Schemifier.schemify(true, Schemifier.infoF _, User)
-    //
-    //
-    //    // Build SiteMap
-    //    def sitemap = SiteMap(
-    //      Menu.i("Home") / "index" >> User.AddUserMenusAfter, // the simple way to declare a menu
-    //
-    //      // more complex because this menu allows anything in the
-    //      // /static path to be visible
-    //      Menu(Loc("Static", Link(List("static"), true, "/static/index"), "Static Content")))
-    //
-    //    def sitemapMutators = User.sitemapMutator
-    //
-    //    // set the sitemap.  Note if you don't want access control for
-    //    // each page, just comment this line out.
-    //    LiftRules.setSiteMapFunc(() => sitemapMutators(sitemap))
-    //
-    //
-    //    // What is the function to test if a user is logged in?
-    //    LiftRules.loggedInTest = Full(() => User.loggedIn_?)
-    //
-    //    LiftRules.dispatch.append(DelayedRest)
-    //
-    //    LiftRules.dataAttributeProcessor.append {
-    //      case ("wombat", str, nodes, _) =>
-    //        ("div *+" #> str).apply(nodes)
-    //    }
-    //
-    //    JavaScriptContext.install()
-    //
-    //    // Make a transaction span the whole HTTP request
-    //    S.addAround(DB.buildLoanWrapper)
-  }
+}
 
   object MenuInfo {
     def sitemap = SiteMap(
@@ -121,6 +72,11 @@ class Boot {
         Menu("Modal Dialog") / "rhodeisland",
         Menu("Ajax and Forms") / "form_ajax"
         ),
+      Menu("Persistence") / "persistence" submenus(
+        Menu("XML Fun") / "xml_fun",
+        Menu("Database") / "database",
+        Menu(Loc("simple", Link(List("simple"), true, "/simple/index"), "Simple Forms")),
+        Menu("Templates") / "template"),
       Menu("Templating") / "templating" / "index" submenus(
         Menu("Surround") / "templating" / "surround",
         Menu("Embed") / "templating" / "embed",
