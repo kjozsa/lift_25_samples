@@ -5,7 +5,7 @@ import net.liftweb.http._
 import js.jquery.JQueryArtifacts
 import net.liftweb._
 import common.{Full, Loggable}
-import sitemap.Loc.Unless
+import sitemap.Loc.{ExtLink, Unless}
 import util.{Props, Helpers}
 import http._
 import actor._
@@ -133,7 +133,10 @@ class Boot {
           Menu("Second (2) Submenu") / "menu" / "two_two"),
         Menu("Third Submenu") / "menu" / "three",
         Menu("Forth Submenu") / "menu" / "four"
-        )
+        ),
+      Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group> <i>Lift</i> project home</xml:group>)),
+      Menu(Loc("src", ExtLink("https://github.com/kjozsa/lift_25_samples"), "Source code for this site"))
+
     )
   }
 
