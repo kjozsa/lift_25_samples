@@ -7,9 +7,6 @@ import net.liftweb._
 import common._
 import common.Full
 import db._
-import http.CometCreationInfo
-import http.Html5Properties
-import http.SessionWatcherInfo
 import mapper.Schemifier
 import sitemap.Loc.{Link, ExtLink}
 import util.{Props, Helpers}
@@ -21,7 +18,7 @@ import Helpers._
 import example._
 
 import comet.ExampleClock
-import model.Person
+import model._
 import snippet._
 
 import scala.language.postfixOps
@@ -71,7 +68,7 @@ class Boot {
     }
 
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
-    Schemifier.schemify(true, Schemifier.infoF _, Person)
+    Schemifier.schemify(true, Schemifier.infoF _, Person, User)
 
   }
 

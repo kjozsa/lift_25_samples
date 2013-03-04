@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2010 WorldWide Conferencing, LLC
+ * Copyright 2007-2013 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,18 @@ package net.liftweb.example.snippet
 
 import _root_.net.liftweb._
 import http._
+import mapper.{Ascending, OrderBy}
 import S._
-
+import SHtml._
 import common._
 import util._
+import net.liftweb.example.model._
 import Helpers._
 
 import _root_.java.util.Locale
+import xml.{Text, Group, NodeSeq}
+
+object definedLocale extends SessionVar[Box[Locale]](Empty)
 
 class Misc {
 
@@ -38,6 +43,108 @@ class Misc {
   private def locales = Locale.getAvailableLocales.toList.sortWith(_.getDisplayName < _.getDisplayName)
 
   private def setLocale(loc: Locale) = definedLocale(Full(loc))
+
+  private object selectedUser extends RequestVar[Box[User]](Empty)
+
+  /**
+   * Get the XHTML containing a list of users
+   */
+  def users: NodeSeq = {
+    User.find() match {
+      case Empty => User.create.firstName("Archer").lastName("Dog").email("archer@dogfood.com").password("mypassword").save
+      case _ =>
+    }
+    // the header
+    <tr>
+      {User.htmlHeaders}<th>Edit</th> <th>Delete</th>
+    </tr> ::
+      // get and display each of the users
+      User.findAll(OrderBy(User.id, Ascending)).flatMap(u => <tr>
+        {u.htmlLine}<td>
+          {link("/simple/edit", () => selectedUser(Full(u)), Text("Edit"))}
+        </td>
+        <td>
+          {link("/simple/delete", () => selectedUser(Full(u)), Text("Delete"))}
+        </td>
+      </tr>)
+  }
+
+  /**
+   * Confirm deleting a user
+   */
+  def confirmDelete = {
+    (for (user <- selectedUser.is) // find the user
+    yield {
+      def deleteUser() {
+        notice("User " + (user.firstName + " " + user.lastName) + " deleted")
+        user.delete_!
+        redirectTo("/simple/index.html")
+      }
+
+      // bind the incoming XHTML to a "delete" button.
+      // when the delete button is pressed, call the "deleteUser"
+      // function (which is a closure and bound the "user" object
+      // in the current content)
+      ".username" #> (user.firstName.is + " " + user.lastName.is) &
+      ".delete" #> submit("Delete", deleteUser _)
+
+      // if the was no ID or the user couldn't be found,
+      // display an error and redirect
+    }) openOr {
+      error("User not found"); redirectTo("/simple/index.html")
+    }
+  }
+
+  // called when the form is submitted
+  private def saveUser(user: User) = user.validate match {
+    // no validation errors, save the user, and go
+    // back to the "list" page
+    case Nil => user.save; redirectTo("/simple/index.html")
+
+    // oops... validation errors
+    // display the errors and make sure our selected user is still the same
+    case x => error(x); selectedUser(Full(user))
+  }
+
+  /**
+   * Add a user
+   */
+  def add(xhtml: Group): NodeSeq =
+    selectedUser.is.openOr(new User).toForm(Empty, saveUser _) ++ <tr>
+      <td>
+        <a href="/simple/index.html">Cancel</a>
+      </td>
+      <td>
+        <input type="submit" value="Create"/>
+      </td>
+    </tr>
+
+  /**
+   * Edit a user
+   */
+  def edit(xhtml: Group): NodeSeq =
+    selectedUser.map(_.
+      // get the form data for the user and when the form
+      // is submitted, call the passed function.
+      // That means, when the user submits the form,
+      // the fields that were typed into will be populated into
+      // "user" and "saveUser" will be called.  The
+      // form fields are bound to the model's fields by this
+      // call.
+      toForm(Empty, saveUser _) ++ <tr>
+      <td>
+        <a href="/simple/index.html">Cancel</a>
+      </td>
+      <td>
+        <input type="submit" value="Save"/>
+      </td>
+    </tr>
+
+      // bail out if the ID is not supplied or the user's not found
+    ) openOr {
+      error("User not found"); redirectTo("/simple/index.html")
+    }
 }
 
-object definedLocale extends SessionVar[Box[Locale]](Empty)
+
+
