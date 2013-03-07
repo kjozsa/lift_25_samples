@@ -120,7 +120,9 @@ class Boot {
         Menu("Long Time") / "longtime",
         Menu("Number Guessing") / "guess",
         Menu("Wizard") / "wiz",
-        Menu("Wizard Challenge") / "wiz2"
+        Menu("Wizard Challenge") / "wiz2",
+        Menu("Simple Screen") / "simple_screen",
+        Menu("Variable Screen") / "variable_screen"
         ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
