@@ -18,7 +18,7 @@ import Helpers._
 import example._
 
 import comet.{ThingBuilder, ExampleClock}
-import lib.StatelessJson
+import lib.{AsyncRest, StatelessJson}
 import model._
 import snippet._
 
@@ -64,6 +64,10 @@ class Boot {
 
     // used by Misc/LongTime
     ThingBuilder.boot()
+
+    // Async REST sample
+    LiftRules.dispatch.append(AsyncRest)
+
 
     LiftRules.localeCalculator = r => definedLocale.openOr(LiftRules.defaultLocaleCalculator(r))
 
@@ -126,7 +130,9 @@ class Boot {
         Menu("Arc Challenge #1") / "arc",
         Menu("Simple Wiring") / "simple_wiring",
         Menu("Wiring Invoice") / "invoice_wiring",
-        Menu("File Upload") / "file_upload"
+        Menu("File Upload") / "file_upload",
+        Menu("Async REST") / "async_rest"
+
         ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
