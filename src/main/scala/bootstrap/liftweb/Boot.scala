@@ -117,8 +117,9 @@ class Boot {
         Menu("Forth Submenu") / "menu" / "four"
         ),
       Menu("Misc code") / "misc" submenus(
-        Menu("Long Time") / "longtime"
-      ),
+        Menu("Long Time") / "longtime",
+        Menu("Number Guessing") / "guess"
+        ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
         project home</xml:group>)),
