@@ -118,7 +118,8 @@ class Boot {
         ),
       Menu("Misc code") / "misc" submenus(
         Menu("Long Time") / "longtime",
-        Menu("Number Guessing") / "guess"
+        Menu("Number Guessing") / "guess",
+        Menu("Wizard") / "wiz"
         ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>

@@ -24,6 +24,7 @@ libraryDependencies ++= {
   val liftVersion = "2.5-RC1"
   Seq(
     "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
+    "net.liftweb"       %% "lift-wizard"        % liftVersion        % "compile",
     "net.liftweb"       %% "lift-mapper"        % liftVersion        % "compile",
     "net.liftmodules"   %% "textile" 	        % "2.5-RC1-1.3"      % "compile",
     "net.liftmodules"   %% "widgets"            % "2.5-RC1-1.2"      % "compile",
