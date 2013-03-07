@@ -131,8 +131,10 @@ class Boot {
         Menu("Simple Wiring") / "simple_wiring",
         Menu("Wiring Invoice") / "invoice_wiring",
         Menu("File Upload") / "file_upload",
-        Menu("Async REST") / "async_rest"
-
+        Menu("Async REST") / "async_rest",
+        Menu(Loc("login", Link(List("login"), true, "/login/index"),
+          <xml:group>Requiring Login<strike>SiteMap</strike> </xml:group>)),
+        Menu("Counting") / "count"
         ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
