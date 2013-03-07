@@ -17,7 +17,7 @@ import Helpers._
 
 import example._
 
-import comet.ExampleClock
+import comet.{ThingBuilder, ExampleClock}
 import lib.StatelessJson
 import model._
 import snippet._
@@ -61,6 +61,9 @@ class Boot {
 
     // used by the Ajax example
     AutoComplete.init()
+
+    // used by Misc/LongTime
+    ThingBuilder.boot()
 
     LiftRules.localeCalculator = r => definedLocale.openOr(LiftRules.defaultLocaleCalculator(r))
 
@@ -113,6 +116,9 @@ class Boot {
         Menu("Third Submenu") / "menu" / "three",
         Menu("Forth Submenu") / "menu" / "four"
         ),
+      Menu("Misc code") / "misc" submenus(
+        Menu("Long Time") / "longtime"
+      ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
         project home</xml:group>)),

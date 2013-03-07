@@ -16,6 +16,7 @@
 
 package net.liftweb.example.snippet
 
+import scala.language.postfixOps
 import net.liftweb.util.Helpers._
 
 object LongTime {
