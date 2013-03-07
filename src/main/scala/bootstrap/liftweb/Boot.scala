@@ -124,7 +124,8 @@ class Boot {
         Menu("Simple Screen") / "simple_screen",
         Menu("Variable Screen") / "variable_screen",
         Menu("Arc Challenge #1") / "arc",
-        Menu("Simple Wiring") / "simple_wiring"
+        Menu("Simple Wiring") / "simple_wiring",
+        Menu("Wiring Invoice") / "invoice_wiring"
         ),
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
