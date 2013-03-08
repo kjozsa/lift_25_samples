@@ -22,74 +22,14 @@
     <div class="lift:LongTime"></div>
   </div>
 
-
-
-    <style type="text/css">
-    /* <![CDATA[ */
-       .function-name {
-        /* font-lock-function-name-face */
-        color: #0000ff;
-      }
-      .sgml-namespace {
-        /* sgml-namespace */
-        color: #da70d6;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-
-     .comment {
-        /* font-lock-comment-face */
-        color: #b22222;
-      }
-      .comment-delimiter {
-        /* font-lock-comment-delimiter-face */
-        color: #b22222;
-      }
-
-      .keyword {
-        /* font-lock-keyword-face */
-        color: #a020f0;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-      .type {
-        /* font-lock-type-face */
-        color: #228b22;
-      }
-      .variable-name {
-        /* font-lock-variable-name-face */
-        color: #b8860b;
-      }
-
-      /* ]]> */
-    </style>
-
     <hr>
 
     <p>The Markup:</p>
-    <pre>
-  &lt;<span class="function-name">div</span>&gt;
-    &lt;<span class="sgml-namespace">lift</span>:<span class="function-name">lazy-load</span>&gt;&lt;<span class="function-name">div</span> <span class="variable-name">class</span>=<span class="string">"lift:LongTime"</span>&gt;&lt;/<span class="function-name">div</span>&gt;&lt;/<span class="sgml-namespace">lift</span>:<span class="function-name">lazy-load</span>&gt;
-  &lt;/<span class="function-name">div</span>&gt;
-</pre>
+    <div data-lift="github?file=src/main/webapp/lazy.html&lines=9-11"></div>
+
 
     <p>The Scala Code:</p>
-    <pre>
-<span class="keyword">object</span> <span class="variable-name">LongTime</span> {
-  <span class="keyword">def</span> <span class="function-name">render</span> = {
-    <span class="keyword">val</span> <span class="variable-name">delay</span> = 1000L + randomLong(10000)
+    <div data-lift="github?file=net/liftweb/example/snippet/LongTime.scala&lines=22-32"></div>
 
-    Thread.sleep(delay)
-    
-    &lt;div&gt;
-    This thread delayed {delay / 1000L} seconds
-    &lt;/div&gt;
-  }
-}
-</pre>
 
 </lift:surround>

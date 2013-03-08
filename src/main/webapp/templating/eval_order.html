@@ -1,65 +1,28 @@
 <html lift:content_id="main">
-  <head>
+<head>
     <title>Lift Example</title>
-  </head>
-  <body>
-    <div id="main" class="lift:surround?with=default;at=content">
-<style>
-/* <![CDATA[ */
-p + p {
-margin-top: 0em;
-text-indent: 0em;
-}
+</head>
+<body>
+<div id="main" class="lift:surround?with=default;at=content">
 
-.dpp_stuff p {
-  padding-left: 15px;
-}
+    <p>
+        Lift evaluates the &lt;lift:xxx/&gt; tags from the outside in, otherwise
+        knows as lazy evaluation. This means that the following code will only
+        embed a single template:
 
-/* ]]> */
-</style>
+        <span data-lift="github.js"></span>
+    <pre class="prettyprint lang-html"><code>&lt;lift:TestCond.loggedout&gt;<br/> &lt;lift:embed
+        what=&quot;/templates/_login_panel&quot;/&gt;<br/>&lt;/lift:TestCond.loggedout&gt;<br/><br/>&lt;lift:TestCond.loggedin&gt;<br/>
+        &lt;lift:embed what=&quot;/templates/_welcome_message&quot;/&gt;<br/>&lt;/lift:TestCond.loggedin&gt;</code></pre>
 
-<p>
-  Lift evaluates the &lt;lift:xxx/&gt; tags from the outside in, otherwise
-knows as lazy evaluation.  This means that the following code will only
-embed a single template:
-    <style type="text/css">
-    /* <![CDATA[ */
-      .function-name {
-        /* font-lock-function-name-face */
-        color: #0000ff;
-      }
-      .sgml-namespace {
-        /* sgml-namespace */
-        color: #da70d6;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-      .variable-name {
-        /* font-lock-variable-name-face */
-        color: #b8860b;
-      }
-      /* ]]> */
-    </style>
-    <pre>
-&lt;<span class="sgml-namespace">lift</span>:<span class="function-name">TestCond.loggedout</span>&gt;
-  &lt;<span class="sgml-namespace">lift</span>:<span class="function-name">embed</span> <span class="variable-name">what</span>=<span class="string">"/templates/_login_panel"</span>/&gt;
-&lt;/<span class="sgml-namespace">lift</span>:<span class="function-name">TestCond.loggedout</span>&gt;
+    Depending on if the user is logged in.
+    </p>
 
-&lt;<span class="sgml-namespace">lift</span>:<span class="function-name">TestCond.loggedin</span>&gt;
-  &lt;<span class="sgml-namespace">lift</span>:<span class="function-name">embed</span> <span class="variable-name">what</span>=<span class="string">"/templates/_welcome_message"</span>/&gt;
-&lt;/<span class="sgml-namespace">lift</span>:<span class="function-name">TestCond.loggedin</span>&gt;
-</pre>
-
-Depending on if the user is logged in.
-</p>
-
-<p>
-  This also means that a snippet may return XML that
-  contains other snippet tags.
-</p>
-    </div>
-  </body>
+    <p>
+        This also means that a snippet may return XML that
+        contains other snippet tags.
+    </p>
+</div>
+</body>
 </html>
 

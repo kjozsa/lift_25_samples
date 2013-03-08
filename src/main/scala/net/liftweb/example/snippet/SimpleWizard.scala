@@ -75,7 +75,8 @@ class SimpleWizard extends StatefulSnippet {
   def pageThree = {
     def validate() {
       this.registerThisSnippet()
-      if (!List("red", "yellow", "blue").contains(color.toLowerCase)) S.error(S.?("Color not red, yellow or blue"))
+      if (!List("red", "yellow", "blue").contains(color.toLowerCase))
+        S.error(S.?("Color not red, yellow or blue"))
       else {
         S.notice("You, " + name + " on the quest " + quest + " may cross the bridge of sorrows")
         S.redirectTo(fromWhence)
