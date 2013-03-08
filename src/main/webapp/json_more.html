@@ -22,19 +22,7 @@
 
     <br>
     The client-side JavaScript for looks like:
-    <pre>
-    &lt;<span class="function-name">script</span>&gt;
-      // &lt;![CDATA[
-        function callNoParam() {
-          noParam(<span class="string">"noParamCallback"</span>);
-        }
-
-        function noParamCallback() {
-          alert(<span class="string">"the server called me back... woo hoo!"</span>);
-        }
-      // ]]&gt;
-    &lt;/<span class="function-name">script</span>&gt;
-</pre>
+    <div data-lift="github?file=src/main/webapp/json_more.html&lines=7-17"></div>
   </div>
 
   <hr>
@@ -62,21 +50,7 @@
     <div id="dest"></div>
     <br>
     The Script to do this is:
-        <pre>
-    &lt;<span class="function-name">script</span>&gt;
-      // &lt;![CDATA[
-        function stringSender() {
-          var q = jQuery(<span class="string">"#myField"</span>)[0];
-          var v = q.value;
-          oneString(<span class="string">"stringCallback"</span>, v);
-        }
-
-        function stringCallback(what) {
-          jQuery(<span class="string">"#dest"</span>)[0].innerHTML = <span class="string">"The server said: "</span>+what;
-        }
-      // ]]&gt;
-    &lt;/<span class="function-name">script</span>&gt;
-</pre>
+    <div data-lift="github?file=src/main/webapp/json_more.html&lines=7-17"></div>
 
   </div>
 

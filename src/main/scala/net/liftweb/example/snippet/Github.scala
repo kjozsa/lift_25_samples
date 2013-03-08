@@ -24,12 +24,14 @@ class Github {
 
   def render = {
     S.appendJs(Prettify & GithubEmbedder)
-    val file = S.attr("file") openOr sys.error("No file specified")
+    val fileParam = S.attr("file") openOr sys.error("No file specified")
+    val file = if (fileParam.startsWith("src")) fileParam else "src/main/scala/"+fileParam
+
     val lines = S.attr("lines") openOr sys.error("No lines specified")
 
     <div
       data-ghuserrepo={SourceConfig.path}
-      data-ghpath={"src/main/scala/"+file}
+      data-ghpath={file}
       data-ghlines={lines} class="prettyprint"></div>
 
   }

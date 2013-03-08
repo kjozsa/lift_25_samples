@@ -43,7 +43,7 @@ object StatelessJson {
   def handleJson(req: Req): Box[LiftResponse] =
     for {
       json <- req.json // get the JSON
-      JObject(List(JField("command", JString(cmd)), JField("params", JString(params)))) <- json // extract the command
+      JObject(List(JField("command", JString(cmd)), JField("params", JString(params)))) <- json
     } yield JavaScriptResponse(SetHtml("json_result", cmd match {
       // build the response
       case "show" => Text(params)

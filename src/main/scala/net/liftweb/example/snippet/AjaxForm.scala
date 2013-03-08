@@ -46,9 +46,11 @@ class AjaxForm {
 
   // bind the view to the dynamic HTML
   def render = {
-    "#state" #> ajaxSelect(AjaxForm.states.map(s => (s, s)), Full(state), { s => state = s; After(200, replace(state)) }) &
+    "#state" #> ajaxSelect(AjaxForm.states.map(s => (s, s)), Full(state), { s =>
+      state = s; After(200, replace(state)) }) &
     "#city" #> cityChoice(state) &
-    "type=submit" #> submit(?("Save"), () => { S.notice("City: "+city+", State: "+state); redirectTo("/")})
+    "type=submit" #> submit(?("Save"), () => {
+      S.notice("City: "+city+", State: "+state); redirectTo("/")})
   }
 }
 
