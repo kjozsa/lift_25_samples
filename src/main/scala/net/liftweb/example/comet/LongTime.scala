@@ -16,6 +16,7 @@
 
 package net.liftweb.example.comet
 
+import scala.language.postfixOps
 import net.liftweb.actor._
 import scala.xml.{NodeSeq, Text}
 

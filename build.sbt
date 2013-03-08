@@ -21,7 +21,7 @@ seq(SbtStartScript.startScriptForClassesSettings: _*)
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
 libraryDependencies ++= {
-  val liftVersion = "2.5-RC1"
+  val liftVersion = "2.5-RC2"
   Seq(
     "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
     "net.liftweb"       %% "lift-wizard"        % liftVersion        % "compile",

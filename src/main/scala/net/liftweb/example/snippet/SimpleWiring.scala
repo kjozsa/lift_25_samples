@@ -16,6 +16,7 @@
 
 package net.liftweb.example.snippet
 
+import scala.language.implicitConversions
 import _root_.net.liftweb._
 import http._
 import util._
