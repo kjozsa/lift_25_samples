@@ -139,7 +139,7 @@ class Boot {
       Menu(Loc("lift", ExtLink("http://liftweb.net"), <xml:group>
         <i>Lift</i>
         project home</xml:group>)),
-      Menu(Loc("src", ExtLink("https://github.com/kjozsa/lift_25_samples"), "Source code for this site"))
+      Menu(Loc("src", ExtLink(s"https://github.com/${SourceConfig.path}"), "Source code for this site"))
 
     )
   }
@@ -216,7 +216,7 @@ class Boot {
     private def createOne: Box[Connection] = {
       try {
         val driverName: String = Props.get("db.driver") openOr chooseDriver
-        val dbUrl: String = Props.get("db.url") openOr chooseURL
+        val dbUrl: String = Props.get("db.path") openOr chooseURL
 
         Class.forName(driverName)
 

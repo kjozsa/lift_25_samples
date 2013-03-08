@@ -57,7 +57,7 @@ class Ajax extends Loggable {
     // use css selectors to bind the view to the functionality
     "#clicker" #> doClicker _ &
       "#select" #> doSelect _ &
-      "#ajaxText" #> doText _ 
+      "#ajaxText" #> doText _
   }
 
     private def buildQuery(current: String, limit: Int): Seq[String] = {
