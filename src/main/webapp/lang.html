@@ -14,46 +14,9 @@
     </form>
 
     <br>
-  <h3>
-    The Lift code to select and set the Locale:
-  </h3>
-    <style type="text/css">
-    /* <![CDATA[ */
-      .function-name {
-        /* font-lock-function-name-face */
-        color: #0000ff;
-      }
-      .keyword {
-        /* font-lock-keyword-face */
-        color: #a020f0;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-      .type {
-        /* font-lock-type-face */
-        color: #228b22;
-      }
-      .variable-name {
-        /* font-lock-variable-name-face */
-        color: #b8860b;
-      }
-      /* ]]> */
-    </style>
+    <h3>
+        The Lift code to select and set the Locale:
+    </h3>
 
-    <pre>
-  <span class="keyword">def</span> <span class="function-name">lang</span> = {
-    <span class="string">"#lang"</span> #&gt; locale.getDisplayLanguage(locale) &amp;
-    <span class="string">"#select"</span> #&gt; SHtml.selectObj(locales.map(lo =&gt; (lo, lo.getDisplayName)),
-                                 definedLocale, setLocale)
-  }
-
-  <span class="keyword">private</span> <span class="keyword">def</span> <span class="function-name">locales</span> =
-  Locale.getAvailableLocales.toList.sort(_.getDisplayName &lt; _.getDisplayName)
-
-  <span class="keyword">private</span> <span class="keyword">def</span> <span class="function-name">setLocale</span>(<span class="variable-name">loc</span>: <span class="type">Locale</span>) = definedLocale(Full(loc))
-</pre>
-
-
+    <div data-lift="github?file=net/liftweb/example/snippet/Misc.scala&lines=37-47"></div>
 </lift:surround>

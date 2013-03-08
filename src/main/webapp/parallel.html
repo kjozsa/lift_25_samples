@@ -28,74 +28,13 @@
     Exec inline:
     <div data-lift="Parallel"></div>
   </div>
-
-
-    <style type="text/css">
-    /* <![CDATA[ */
-       .function-name {
-        /* font-lock-function-name-face */
-        color: #0000ff;
-      }
-      .sgml-namespace {
-        /* sgml-namespace */
-        color: #da70d6;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-
-     .comment {
-        /* font-lock-comment-face */
-        color: #b22222;
-      }
-      .comment-delimiter {
-        /* font-lock-comment-delimiter-face */
-        color: #b22222;
-      }
-
-      .keyword {
-        /* font-lock-keyword-face */
-        color: #a020f0;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-      .type {
-        /* font-lock-type-face */
-        color: #228b22;
-      }
-      .variable-name {
-        /* font-lock-variable-name-face */
-        color: #b8860b;
-      }
-
-      /* ]]> */
-    </style>
-
     <hr/>
 
     <p>The Markup:</p>
-    <pre>
-  &lt;<span class="function-name">div</span>&gt;
-    Exec parallel:
-    &lt;<span class="sgml-namespace">lift</span>:<span class="function-name">Parallel</span>  <span class="sgml-namespace">lift</span>:<span class="variable-name">parallel</span>=<span class="string">"true"</span>/&gt;
-  &lt;/<span class="function-name">div</span>&gt;
-</pre>
+    <div data-lift="github?file=src/main/webapp/parallel.html&lines=12-15"></div>
+
 
     <p>The Scala Code:</p>
-    <pre>
-<span class="keyword">object</span> <span class="variable-name">Parallel</span> {
-  <span class="keyword">def</span> <span class="function-name">render</span> = {
-    &lt;div&gt;This snippet evaluated on 
-    {
-      Thread.currentThread.getName()
-    } 
-    &lt;/div&gt;
-  }
-}
-</pre>
-
+    <div data-lift="github?file=net/liftweb/example/snippet/Parallel.scala&lines=19-27"></div>
 
 </lift:surround>

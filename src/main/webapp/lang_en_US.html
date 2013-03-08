@@ -1,58 +1,22 @@
 <lift:surround with="default" at="content">
-  <form class="lift:misc.lang?form=post">
-    <h1>Howdy Partner</h1>
-    <span>My language: <span id="lang">lang</span></span>
-    
-    <div>
-      Set locale <select id="select">
-	<option>Foo</option>
-	</select>
-      <input type="submit" value="Change">
-    </div>
-  </form>
 
+    <form data-lift="Misc.lang?form=post">
+        <h1><span data-lift="Loc?locid=hello">Hello</h1>
+        <span><span data-lift="Loc?locid=my_lang">My language: </span><span id="lang">lang</span></span>
 
-  <br>
-  <h3>
-    The Lift code to select and set the Locale:
-  </h3>
-    <style type="text/css">
-    /* <![CDATA[ */
-      .function-name {
-        /* font-lock-function-name-face */
-        color: #0000ff;
-      }
-      .keyword {
-        /* font-lock-keyword-face */
-        color: #a020f0;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-      .type {
-        /* font-lock-type-face */
-        color: #228b22;
-      }
-      .variable-name {
-        /* font-lock-variable-name-face */
-        color: #b8860b;
-      }
-      /* ]]> */
-    </style>
+        <div>
+            <span data-lift="Loc.set_locale">Set locale</span>
+            <select id="select">
+                <option>Foo</option>
+            </select>
+            <button type="submit"><span data-lift="Loc.change"></span></button>
+        </div>
+    </form>
 
-    <pre>
-  <span class="keyword">def</span> <span class="function-name">lang</span> = {
-    <span class="string">"#lang"</span> #&gt; locale.getDisplayLanguage(locale) &amp;
-    <span class="string">"#select"</span> #&gt; SHtml.selectObj(locales.map(lo =&gt; (lo, lo.getDisplayName)),
-                                 definedLocale, setLocale)
-  }
+    <br>
+    <h3>
+        The Lift code to select and set the Locale:
+    </h3>
 
-  <span class="keyword">private</span> <span class="keyword">def</span> <span class="function-name">locales</span> =
-  Locale.getAvailableLocales.toList.sort(_.getDisplayName &lt; _.getDisplayName)
-
-  <span class="keyword">private</span> <span class="keyword">def</span> <span class="function-name">setLocale</span>(<span class="variable-name">loc</span>: <span class="type">Locale</span>) = definedLocale(Full(loc))
-</pre>
-
-
+    <div data-lift="github?file=net/liftweb/example/snippet/Misc.scala&lines=37-47"></div>
 </lift:surround>

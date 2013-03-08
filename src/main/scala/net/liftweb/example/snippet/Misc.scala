@@ -40,7 +40,9 @@ class Misc {
         definedLocale, setLocale)
   }
 
-  private def locales = Locale.getAvailableLocales.toList.sortWith(_.getDisplayName < _.getDisplayName)
+  private def locales = Locale.getAvailableLocales.toList.sortWith {
+    _.getDisplayName < _.getDisplayName
+  }
 
   private def setLocale(loc: Locale) = definedLocale(Full(loc))
 

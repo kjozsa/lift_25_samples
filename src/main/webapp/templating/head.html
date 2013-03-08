@@ -4,20 +4,6 @@
   </head>
   <body>
     <div id="main" class="lift:surround?with=default;at=content">
-  <style>
-    /* <![CDATA[ */
-p + p {
-margin-top: 0em;
-text-indent: 0em;
-}
-
-.dpp_stuff p {
-  padding-left: 15px;
-}
-
-/* ]]> */
-  </style>
-
 <p>
   Lift keeps the page as an XML data structure throughout
   the rendering process.  This allows Lift to rewrite the
@@ -33,39 +19,9 @@ text-indent: 0em;
 
 <p>
   So, if you have the following code in your page:
+    <span data-lift="github.js"></span>
+        <pre class="prettyprint"><code>&lt;span&gt;<br/>  &lt;head&gt;<br/>    &lt;script type=&quot;text/javascript&quot; src=&quot;/classpath/jquery.js&quot;/&gt;<br/>  &lt;/head&gt;<br/>  do some jQuery stuff here<br/>&lt;/span&gt;<br/>&lt;span&gt;<br/>  &lt;head&gt;<br/>    &lt;script type=&quot;text/javascript&quot; src=&quot;/classpath/jquery.js&quot;/&gt;<br/>  &lt;/head&gt;<br/>  do some jQuery stuff here<br/>&lt;/span&gt;</code></pre>
 
-    <style type="text/css">
-    /* <![CDATA[ */
-      .function-name {
-        /* font-lock-function-name-face */
-        color: #0000ff;
-      }
-      .string {
-        /* font-lock-string-face */
-        color: #bc8f8f;
-      }
-      .variable-name {
-        /* font-lock-variable-name-face */
-        color: #b8860b;
-      }
-      /* ]]> */
-    </style>
-    <pre>
-&lt;<span class="function-name">span</span>&gt;
-  &lt;<span class="function-name">head</span>&gt;
-    &lt;<span class="function-name">script</span> <span class="variable-name">type</span>=<span class="string">"text/javascript"</span> <span class="variable-name">src</span>=<span class="string">"/classpath/jquery.js"</span>/&gt;
-  &lt;/<span class="function-name">head</span>&gt;
-  do some jQuery stuff here
-&lt;/<span class="function-name">span</span>&gt;
-
-
-&lt;<span class="function-name">span</span>&gt;
-  &lt;<span class="function-name">head</span>&gt;
-    &lt;<span class="function-name">script</span> <span class="variable-name">type</span>=<span class="string">"text/javascript"</span> <span class="variable-name">src</span>=<span class="string">"/classpath/jquery.js"</span>/&gt;
-  &lt;/<span class="function-name">head</span>&gt;
-  Do some other jQuery stuff here
-&lt;/<span class="function-name">span</span>&gt;
-</pre>
 Lift will put a single     &lt;<span class="function-name">script</span> <span class="variable-name">type</span>=<span class="string">"text/javascript"</span> <span class="variable-name">src</span>=<span class="string">"/classpath/jquery.js"</span>/&gt; into the <code>&lt;head/&gt;</code> of the page.
 </p>
 
