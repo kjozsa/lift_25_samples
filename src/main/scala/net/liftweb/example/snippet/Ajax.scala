@@ -51,13 +51,13 @@ class Ajax extends Loggable {
       v => DisplayMessage("messages", ("#number" #> Text(v)).apply(in), 5 seconds, 1 second))
 
     // build up an ajax text box
-    def doText(in: NodeSeq) = ajaxText("", v => DisplayMessage("messages", ("#value" #> Text(v)).apply(in), 4 seconds, 1 second))
+    def doText(in: NodeSeq) = ajaxText("", v => DisplayMessage("messages", ("#value" #>
+      Text(v)).apply(in), 4 seconds, 1 second))
 
     // use css selectors to bind the view to the functionality
     "#clicker" #> doClicker _ &
       "#select" #> doSelect _ &
-      "#ajaxText" #> doText _ // &
-//      "#auto" #> AutoComplete("", buildQuery _, _ => ())  // FIXME this aint work plus even makes Timely misbehave
+      "#ajaxText" #> doText _ 
   }
 
     private def buildQuery(current: String, limit: Int): Seq[String] = {
