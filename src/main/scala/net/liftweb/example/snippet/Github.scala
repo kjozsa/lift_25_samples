@@ -16,6 +16,10 @@ object SourceConfig {
 class Github {
   object jsAddedAlready extends RequestVar[Boolean](false)
 
+  object EnableJqCache extends JsCmd {
+    def toJsCmd = """$.ajaxSetup({ cache: true });"""
+  }
+
   object Prettify extends JsCmd {
     def toJsCmd = """$.getScript("https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=scala", function() {}).fail(function() {alert("could not load prettify");});"""
   }
@@ -26,7 +30,7 @@ class Github {
 
   def js = {
     if (!jsAddedAlready) {
-      S.appendJs(Prettify & GithubEmbedder)
+      S.appendJs(EnableJqCache & Prettify & GithubEmbedder)
       jsAddedAlready set true
     }
     NodeSeq.Empty
