@@ -1,18 +1,17 @@
 <lift:surround with="default" at="content">
     <div data-lift="CountGame.run?form=post">
         <choose:guess>
-              Guess a number between 1 and 100.<br>
-              Last guess: <count:last></count:last><br >
-              Guess: <count:input></count:input><br>
-              <input type="submit" value="Guess">
+            Guess a number between 1 and 100.<br>
+            Last guess: <span class="last"></span><br>
+            Guess: <span class="input"></span><br>
+            <input type="submit" value="Guess">
           </choose:guess>
 
           <choose:win>
               You Win!!<br >
-              You guessed <count:number></count:number> after
-              <count:count></count:count> guesses.<br>
+              You guessed <span class="number"></span> after
+              <span class="count"></span> guesses.<br>
           </choose:win>
-      <!--</lift:snippet>-->
     </div>
   <br >
   <br >
