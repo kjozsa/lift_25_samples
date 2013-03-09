@@ -37,8 +37,10 @@ class Github {
   }
 
   def render = {
-    val fileParam = S.attr("file") openOr sys.error("No file specified")
-    val file = if (fileParam.startsWith("src")) fileParam else "src/main/scala/"+fileParam
+    val file = S.attr("file") openOr sys.error("No file specified") match {
+      case attr if attr startsWith "src" => attr
+      case attr =>  "src/main/scala/" + attr
+    }
 
     val lines = S.attr("lines") openOr sys.error("No lines specified")
 
