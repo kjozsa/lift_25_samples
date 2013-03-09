@@ -21,11 +21,11 @@ class Github {
   }
 
   object Prettify extends JsCmd {
-    def toJsCmd = """$.getScript("https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=scala", function() {}).fail(function() {alert("could not load prettify");});"""
+    def toJsCmd = """$.getScript("https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=scala", function() {}).fail(function() { alert("could not load prettify"); });"""
   }
 
   object GithubEmbedder extends JsCmd {
-    def toJsCmd = """$.getScript("/scripts/ghembedder.min.js", function() { ghe.autoload(); }).fail(function() {alert("could not load github embedder");});"""
+    def toJsCmd = """$.getScript("/scripts/ghembedder.js", function() { ghe.autoload(); }).fail(function() { alert("could not load github embedder"); });"""
   }
 
   def js = {
